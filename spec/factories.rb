@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :gram do
-  	message "hello"
+  	messages "hello"
   	association :user
   end
 end
