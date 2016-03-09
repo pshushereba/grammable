@@ -2,6 +2,20 @@ require 'rails_helper'
 
 RSpec.describe GramsController, type: :controller do
 
+	describe "grams#update" do
+		it "should allow users to successfully update grams" do
+
+		end
+
+		it "should have http 404 error if the gram cannot be found" do
+
+		end
+
+		it "should render the edit form with an http status of unprocessable_entity" do
+
+		end
+	end
+
 	describe "grams#edit" do
 		it "should successfully show the edit form if the gram is found" do
 			p = FactoryGirl.create(:gram)
