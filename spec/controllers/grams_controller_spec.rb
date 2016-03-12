@@ -3,6 +3,13 @@ require 'rails_helper'
 RSpec.describe GramsController, type: :controller do
 
 	describe "grams#destroy" do
+		it "shouldn't let unauthenticated users destroy a gram" do
+      		p = FactoryGirl.create(:gram)
+      		delete :destroy, id: p.id
+      		expect(response).to redirect_to new_user_session_path
+    	end
+
+
 		it "should allow a user to destroy grams" do
 			p = FactoryGirl.create(:gram)
 			delete :destroy, id: p.id
@@ -18,6 +25,12 @@ RSpec.describe GramsController, type: :controller do
 	end
 
 	describe "grams#update" do
+		it "shouldn't let unauthenticated users create a gram" do
+      		p = FactoryGirl.create(:gram)
+   			patch :update, id: p.id, gram: { message: "Hello" }
+      		expect(response).to redirect_to new_user_session_path
+    	end
+
 		it "should allow users to successfully update grams" do
 			p = FactoryGirl.create(:gram, messages: "Initial Value")
 			patch :update, id: p.id, gram: { messages: 'Changed' }
@@ -41,6 +54,12 @@ RSpec.describe GramsController, type: :controller do
 	end
 
 	describe "grams#edit" do
+		it "shouldn't let unauthenticated users edit a gram" do
+      		p = FactoryGirl.create(:gram)
+      		get :edit, id: p.id
+      		expect(response).to redirect_to new_user_session_path
+    	end
+    	
 		it "should successfully show the edit form if the gram is found" do
 			p = FactoryGirl.create(:gram)
 			get :edit, id: p.id
