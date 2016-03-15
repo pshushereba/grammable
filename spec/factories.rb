@@ -10,6 +10,7 @@ FactoryGirl.define do
 
   factory :gram do
   	messages "hello"
+    picture { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'picture.png'), 'image/png')}
   	association :user
   end
 end
